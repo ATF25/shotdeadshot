@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src='//libtl.com/sdk.js' data-zone='9441720' data-sdk='show_9441720'></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deadshot Telegram Gaming Community</title>
+    <title>Deadshot.io - Telegram Gaming</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src='//libtl.com/sdk.js' data-zone='9441720' data-sdk='show_9441720'></script>
     <style>
         :root {
             --primary: #6a11cb;
@@ -32,18 +32,21 @@
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 2;
         }
         
         header {
             text-align: center;
             padding: 30px 0;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             position: relative;
             overflow: hidden;
         }
@@ -61,86 +64,50 @@
         
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             background: linear-gradient(to right, var(--accent), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
             text-shadow: 0 0 15px rgba(255, 45, 117, 0.5);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
         
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            margin-bottom: 80px;
         }
         
-        @media (min-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        .card {
+        .play-section {
             background: rgba(15, 12, 41, 0.7);
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 45, 117, 0.3);
-        }
-        
-        .card-header {
-            padding: 20px;
-            background: linear-gradient(90deg, rgba(37, 117, 252, 0.2), rgba(106, 17, 203, 0.2));
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            color: var(--light);
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .card-title i {
-            color: var(--accent);
-        }
-        
-        .card-subtitle {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .card-body {
-            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
         
         .game-image {
             width: 100%;
-            height: 200px;
+            height: auto;
+            max-height: 200px;
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 20px;
@@ -152,6 +119,7 @@
             margin-bottom: 20px;
             color: var(--gray);
             line-height: 1.7;
+            font-size: 0.95rem;
         }
         
         .btn {
@@ -211,82 +179,64 @@
             background: linear-gradient(45deg, #ff5e94, var(--accent));
         }
         
-        .telegram-prompt {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-            border-left: 4px solid var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .telegram-prompt i {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .feature {
-            text-align: center;
-            padding: 25px 20px;
-            background: rgba(255, 255, 255, 0.05);
+        .game-container {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+            display: none;
             border-radius: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
         
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            background: rgba(37, 117, 252, 0.1);
+        .game-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
-        .feature i {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            width: 70px;
-            height: 70px;
+        .navigation-buttons {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+            z-index: 100;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .nav-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .feature h3 {
+            padding: 12px 25px;
+            background: rgba(37, 117, 252, 0.8);
+            color: white;
+            border-radius: 50px;
             font-family: 'Orbitron', sans-serif;
-            margin-bottom: 10px;
-            color: var(--light);
-            font-size: 1.2rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .feature p {
-            color: var(--gray);
-            font-size: 0.9rem;
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(106, 17, 203, 0.8);
         }
         
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray);
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 2;
+        .nav-btn i {
+            margin-right: 8px;
         }
         
         .orientation-warning {
@@ -366,28 +316,58 @@
             pointer-events: none;
         }
         
+        .ad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .ad-content {
+            max-width: 300px;
+            width: 100%;
+        }
+        
+        .ad-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+        }
+        
+        .ad-countdown {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .subtitle {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
-            .card-title {
-                font-size: 1.5rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
+            .play-section {
+                padding: 20px;
             }
             
             .btn {
@@ -395,19 +375,36 @@
                 font-size: 0.9rem;
             }
             
-            .features {
-                grid-template-columns: 1fr;
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
             }
             
             .orientation-message {
                 font-size: 1.2rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 90%;
+                margin-bottom: 10px;
             }
         }
         
         /* Animation for header */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
         
@@ -418,6 +415,17 @@
 </head>
 <body>
     <div class="particles" id="particles"></div>
+    
+    <div class="ad-overlay" id="adOverlay">
+        <div class="ad-content">
+            <h3><i class="fas fa-ad"></i> ADVERTISEMENT</h3>
+            <p>Your support helps us keep the game free!</p>
+            <div class="ad-placeholder">
+                <p>Telegram Game Ad</p>
+            </div>
+            <p class="ad-countdown">Game will launch in <span id="adCountdown">3</span> seconds</p>
+        </div>
+    </div>
     
     <div class="orientation-warning" id="orientationWarning">
         <i class="fas fa-sync-alt"></i>
@@ -430,78 +438,40 @@
     <div class="container">
         <header>
             <div class="header-content floating">
-                <h1>Deadshot</h1>
-                <p class="subtitle">Join the ultimate sniper battle royale experience and compete with players worldwide</p>
+                <h1>Deadshot.io</h1>
+                <p class="subtitle">Join the ultimate sniper battle royale experience</p>
             </div>
         </header>
         
-        <div class="main-content">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title"><i class="fas fa-gamepad"></i> Play the Game</h2>
-                    <p class="card-subtitle">Battle Royale Sniper Action</p>
-                </div>
-                <div class="card-body">
-                    <img src="https://imgs.crazygames.com/games/deadshot-io/cover_16x9-1694770506842.png?metadata=none&quality=40&width=1200&height=630&fit=crop" alt="Deadshot.io Game" class="game-image">
-                    <p class="game-description">Enter the fast-paced world of Deadshot is a multiplayer sniper battle royale. Test your skills against players from around the globe in intense sniper duels.</p>
-                    <button class="btn" id="playButton">
-                        <i class="fas fa-play"></i> Play Now
-                    </button>
-                </div>
+        <div class="content-section">
+            <div class="play-section" id="playSection">
+                <img src="https://imgs.crazygames.com/games/deadshot-io/cover_16x9-1694770506842.png?metadata=none&quality=40&width=1200&height=630&fit=crop" alt="Deadshot.io Game" class="game-image">
+                <p class="game-description">Enter the fast-paced world of Deadshot.io - a multiplayer sniper battle royale. Test your skills against players from around the globe.</p>
+                <button class="btn" id="playButton">
+                    <i class="fas fa-play"></i> Play Now
+                </button>
             </div>
             
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title"><i class="fas fa-users"></i> Join Community</h2>
-                    <p class="card-subtitle">Connect with Players Worldwide</p>
-                </div>
-                <div class="card-body">
-                    <div class="telegram-prompt">
-                        <i class="fas fa-globe-americas"></i>
-                        <span>Join to connect and play with users around the world.</span>
-                    </div>
-                    <p class="game-description">Become part of our growing Telegram community to get the latest updates, participate in tournaments, and connect with fellow snipers.</p>
-                    <a href="https://t.me/DeadshotHQ" class="btn btn-accent" target="_blank">
-                        <i class="fab fa-telegram"></i> Join Telegram Channel
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-trophy"></i>
-                <h3>Tournaments</h3>
-                <p>Compete in weekly tournaments with prizes</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-users"></i>
-                <h3>Community</h3>
-                <p>Connect with players worldwide</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-sync-alt"></i>
-                <h3>Updates</h3>
-                <p>Get the latest game news first</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-headset"></i>
-                <h3>Support</h3>
-                <p>24/7 community support</p>
+            <div class="game-container" id="gameContainer">
+                <iframe src="" frameborder="0" allow="gamepad *;" id="gameFrame"></iframe>
             </div>
         </div>
     </div>
     
-    <footer>
-        <p>© 2025 Deadshot Gaming Community </p>
-        <p>Join our Telegram channel to connect with players worldwide</p>
-    </footer>
+    <div class="navigation-buttons" id="navigationButtons">
+        <a href="#" class="nav-btn" id="backButton">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <a href="#" class="nav-btn" id="homeButton">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
     
     <script>
         // Create background particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 30;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -527,12 +497,77 @@
             }
         }
         
-        // Orientation check for game
-        document.getElementById('playButton').addEventListener('click', function() {
-            // Check if device is in landscape mode
+        // DOM elements
+        const playButton = document.getElementById('playButton');
+        const playSection = document.getElementById('playSection');
+        const gameContainer = document.getElementById('gameContainer');
+        const gameFrame = document.getElementById('gameFrame');
+        const navigationButtons = document.getElementById('navigationButtons');
+        const orientationWarning = document.getElementById('orientationWarning');
+        const continueBtn = document.getElementById('continueBtn');
+        const backButton = document.getElementById('backButton');
+        const homeButton = document.getElementById('homeButton');
+        const adOverlay = document.getElementById('adOverlay');
+        
+        // Game flow
+        function initializeGame() {
+            // Show interstitial ad on page load
+            showInAppAd();
+        }
+        
+        // Show in-app interstitial ad
+        function showInAppAd() {
+            // Simulating ad display
+            setTimeout(() => {
+                // After ad completes, show the play button
+                playSection.style.display = 'block';
+            }, 1500);
+        }
+        
+        // Show rewarded ad
+        function showRewardedAd() {
+            // Show ad overlay
+            adOverlay.style.display = 'flex';
+            
+            let seconds = 3;
+            const adCountdown = document.getElementById('adCountdown');
+            adCountdown.textContent = seconds;
+            
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                adCountdown.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    adOverlay.style.display = 'none';
+                    startGame();
+                }
+            }, 1000);
+        }
+        
+        // Start the game
+        function startGame() {
+            // Hide the play section
+            playSection.style.display = 'none';
+            
+            // Show the game container
+            gameContainer.style.display = 'block';
+            
+            // Set the game iframe source
+            gameFrame.src = 'https://www.crazygames.com/embed/deadshot-io';
+            
+            // Show navigation buttons
+            navigationButtons.style.display = 'flex';
+            
+            // Check orientation
+            checkOrientation();
+        }
+        
+        // Check device orientation
+        function checkOrientation() {
             if (window.innerHeight > window.innerWidth) {
                 // Portrait mode - show warning
-                document.getElementById('orientationWarning').style.display = 'flex';
+                orientationWarning.style.display = 'flex';
                 
                 // Start countdown
                 let seconds = 5;
@@ -545,54 +580,52 @@
                     
                     if (seconds <= 0) {
                         clearInterval(countdownInterval);
-                        startGame();
+                        // Proceed anyway after countdown
                     }
                 }, 1000);
-            } else {
-                // Landscape mode - start game directly
-                startGame();
             }
+        }
+        
+        // Event Listeners
+        playButton.addEventListener('click', function() {
+            // Show rewarded ad
+            showRewardedAd();
         });
         
-        // Continue anyway button
-        document.getElementById('continueBtn').addEventListener('click', function(e) {
+        continueBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            startGame();
+            orientationWarning.style.display = 'none';
+        });
+        
+        backButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Go back to play section
+            gameContainer.style.display = 'none';
+            playSection.style.display = 'block';
+            navigationButtons.style.display = 'none';
+            gameFrame.src = '';
+        });
+        
+        homeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Reset to initial state
+            gameContainer.style.display = 'none';
+            playSection.style.display = 'block';
+            navigationButtons.style.display = 'none';
+            gameFrame.src = '';
         });
         
         // Handle orientation change
         window.addEventListener('orientationchange', function() {
             if (window.orientation === 90 || window.orientation === -90) {
                 // Landscape mode detected
-                document.getElementById('orientationWarning').style.display = 'none';
-                startGame();
+                orientationWarning.style.display = 'none';
             }
         });
         
-        function startGame() {
-            document.getElementById('orientationWarning').style.display = 'none';
-            
-            // Show ad before launching game
-            showAd().then(() => {
-                // Redirect to game after ad
-                window.location.href = 'https://deadshot.io/';
-            }).catch(() => {
-                // If ad fails, still launch game
-                window.location.href = 'https://deadshot.io/';
-            });
-        }
-        
-        // Function to show ad (simplified for this demo)
-        function showAd() {
-            return new Promise((resolve) => {
-                // This is where the actual ad API would be called
-                // For demo purposes, we'll just resolve after a short delay
-                setTimeout(resolve, 1500);
-            });
-        }
-        
-        // Initialize particles
+        // Initialize
         createParticles();
+        initializeGame();
     </script>
 </body>
 </html>
